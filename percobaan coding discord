@@ -1,0 +1,36 @@
+
+import discord
+from discord.ext import commands
+
+# Pengaturan bot
+intents = discord.Intents.default()
+intents.message_content = True
+
+bot = commands.Bot(command_prefix="!", intents=intents)
+
+# Ketika bot aktif
+@bot.event
+async def on_ready():
+    print(f"Bot berhasil aktif: {bot.user}")
+
+# Perintah menyapa
+@bot.command()
+async def halo(ctx):
+    await ctx.send(f"Halo {ctx.author.mention}! 👋")
+
+# Perintah informasi
+@bot.command()
+async def info(ctx):
+    await ctx.send(
+        "🤖 Nama Bot: My Discord Bot\n"
+        "✨ Status: Aktif\n"
+        "💻 Dibuat dengan Python"
+    )
+
+# Perintah ping
+@bot.command()
+async def ping(ctx):
+    await ctx.send(f"Pong! 🏓 {round(bot.latency * 1000)} ms")
+
+# Jalankan bot
+bot.run("MASUKKAN_TOKEN_BOT")
